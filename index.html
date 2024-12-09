@@ -1,0 +1,144 @@
+<!--как запустить проект
+1) открываем терминал win + r и вписываем cmd
+2) через cd вписываем директрорию проекта
+3) запускаем сервер через команду node server.js
+4) если все прошло успешно , то выйдет сообщение по типу Server running at http://localhost:8080/
+   и копируем адрес и вставляем в любой браузер
+-->>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="container">
+                <img alt="logo" src="logo.png"></ing>
+                <ul class="headerLinks">
+                    <li><a href="#map">game</a></li>
+                    <li><a href="#how-to-play">how to play</a></li>
+                    <li><a href="#commets">give comment</a></li>
+                </ul>
+            </div>
+            
+
+        </div>
+    </header>
+
+    <div class="container" style="margin-top: 150px;">
+        <div class="main">
+            <div id="states"></div>
+
+            <div class="map">
+                <pre id="map"></pre>
+            </div>
+
+            <div id="bag">
+                <div id="controls" >
+                    <button class="hoverable" id="detonation" onclick="changeBomb('detonation')">Detonation</button>
+                    <button class="hoverable" id="square" onclick="changeBomb('square')">Square Bomb</button>
+                    <button class="hoverable" id="random" onclick="changeBomb('random')">random Bomb</button>
+                    <button class="hoverable" id="superBomb" onclick="changeBomb('superBomb')">Super Bomb</button>
+                </div>
+                <div id="bomb-description" class="textarea">
+                    <pre id="bomb-description-txt"></pre>
+                </div>
+                <div id="terminal" class="textarea">
+                    <pre id="terminal-txt"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container"  style="margin-top: 180px;">
+        <h2>tutorial about the game</h2>
+        <div id="how-to-play">
+            <ul class="tutorials">
+                <li><button onclick="showTutorial('player')">player</button></li>
+                <li><button onclick="showTutorial('enemy')">enemy</button></li>
+                <li><button onclick="showTutorial('bombs')">bombs</button></li>
+                <li><button onclick="showTutorial('how-to-play')">how to play</button></li>
+            </ul>
+            <p id="tutorial_player" style="display: none;">The game can move on the WASD keys and place bombs on the arrows in 4 directions</p>
+            <p id="tutorial_enemy" style="display: none;">unlike the player , the enemies perform an action every 2 turns . On his turn, the enemy can descend vertically or diagonally, or attack the player if he is in close proximity. If they see a player, they will go to the point where they saw him last.</p>
+            <p id="tutorial_bombs" style="display: none;">
+                The player has 4 types of bombs and one available action in the shop.<br>
+                <br>
+                Default Bomb: A basic bomb available from the start, it explodes in a cross pattern. All other bombs cost money.<br>
+                <br>
+                Detonation: Costs 1 coin and forces the bomb to explode immediately upon activation.<br>
+                <br>
+                Square Bomb: Costs 2 coins and has a 3x3 explosion radius.<br>
+                <br>
+                Random Bomb: Costs 3 coins and creates a random shape as its explosion radius.<br>
+                <br>
+                Super Bomb: Costs 4 coins and damages all cells diagonally and vertically from the explosion point.
+            </p>
+            
+            <p id="tutorial_how-to-play" style="display: none;">
+                The game has no ending; the goal is to progress through as many randomly generated dungeon floors as possible in one run.
+                <br>
+                To complete the current dungeon floor, you must eliminate all enemies (E) on the map and enter the portal (@), which teleports you to the next floor.
+                <br>
+                For an easier playthrough, it’s recommended to collect coins (c) and use them to buy bombs or detonate bombs in the shop.
+            </p>
+        </div>
+    </div>
+    
+    <div class="container" style="margin-top: 100px;">
+        <div  id="comments">
+            <h2>give a comment</h2>
+            <form id="commentForm">
+                <label for="username">Name:</label>
+                <input type="text" id="username" placeholder="type your name" required>
+            
+                <label for="commentText">Comment:</label>
+                <textarea id="commentText" rows="1" placeholder="type your comment" required></textarea>
+            
+                <button type="submit" class="btn">Submit</button>
+            </form>
+    
+            <div id="commentSection">
+                <h3>Comments:</h3>
+                <ul id="commentsList">
+                    <!-- comments тут -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+    <footer style="margin-top: 150px;">
+        <div class="footer">
+            <div class="container" style="text-align: center;">
+                <p style="font-size: 18px; margin: 0;">© 2024 Tamirlan</p>
+                <p style="margin: 5px 0;">phone: <a href="tel:+77478481996" style="text-decoration: none; color: #007bff;">+7 (747) 848 1996</a></p>
+
+            </div>
+        </div>
+    </footer>
+    
+
+
+    <!-- я загрузил несколько js файлов , но я использую main.js , что б загрузить туда глобальные переменные 
+     так как player.js не может использовать переменные с enemy.js , так как enemy.js обьявлен позже
+     
+     для решение этой проблемы main/js обьявляется самым перым и имеет в себе все основные переменные и обьекты
+     -->
+    <script src="main.js"></script>
+    <script src="player.js"></script>
+    <script src="enemy.js"></script>
+    <script src="update.js"></script>
+    <script src="server.js"></script>
+    </div>
+</body>
+</html>
